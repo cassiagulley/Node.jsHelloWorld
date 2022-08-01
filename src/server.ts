@@ -1,16 +1,8 @@
-
 import express, {Request, Response, Application} from 'express';
+import { findCat } from './store';
 
 const app : Application = express();
 const PORT = process.env.PORT || 3000;
-
-interface Cat {
-  id: number;
-  name: string;
-}
-
-// loading JSON cat storage
-const data = require("./cats.json") as { cats: Cat[] };
 
 // base url
 app.get("/", (req: Request, res: Response) : void => {
@@ -26,11 +18,9 @@ app.get("/cats/:id", (req: Request, res: Response) : void => {
     let id: number = parseInt(req.params.id)
 
     // filtering JSON data to find matching cat
-    const matchingCat = data.cats.filter(cat => cat.id === id)[0];
-
-    const mactchingCatName = {name: matchingCat.name};
-  
-    matchingCat ? res.send(mactchingCatName) : res.status(404).send();
+    const matchingCat = findCat(id);
+    
+    matchingCat ? res.send({name: matchingCat.name }) : res.status(404).send();
   });
 
 app.listen(PORT, () : void => {

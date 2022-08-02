@@ -1,0 +1,25 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint",
+      "prettier"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "prettier"
+    ],
+    "rules": {
+        // enable additional rules
+        // "require statement not part of an import declaration", store.js line 7
+        "@typescript-eslint/no-var-requires": 0,
+        "semi": [2, "always"],
+        "quotes": [2, "single"],
+        "prettier/prettier": 2,
+        "no-console": 1,
+        "camelcase": 1
+    }
+   
+}

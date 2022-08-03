@@ -1,5 +1,5 @@
 import express, { Request, Response, Application } from 'express';
-import { findCat } from './store';
+import { findCatName } from './store';
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
@@ -18,9 +18,9 @@ app.get('/cats/:id', (req: Request, res: Response): void => {
   const id: number = parseInt(req.params.id);
 
   // filtering JSON data to find matching cat
-  const matchingCat = findCat(id);
+  const matchingCatName = findCatName(id);
 
-  matchingCat ? res.send({ name: matchingCat.name }) : res.status(404).send();
+  matchingCatName ? res.send({ name: matchingCatName }) : res.status(404).send();
 });
 
 app.listen(PORT, (): void => {

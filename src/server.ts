@@ -1,5 +1,6 @@
 import express, { Request, Response, Application } from 'express';
 import { findCatName } from './store';
+import { logger } from './utils/logger';
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
@@ -24,5 +25,5 @@ app.get('/cats/:id', (req: Request, res: Response): void => {
 });
 
 app.listen(PORT, (): void => {
-  console.log(`Server Running on https://localhost:${PORT}`);
+  logger.info(`Server Running on https://localhost:${PORT}`);
 });

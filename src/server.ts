@@ -24,6 +24,6 @@ app.get('/cats/:id', (req: Request, res: Response): void => {
   matchingCatName ? res.send({ name: matchingCatName }) : res.status(404).send();
 });
 
-app.listen(PORT, (): void => {
+app.listen({ port: PORT, host: '0.0.0.0' }, (): void => {
   logger.info(`Server Running on https://localhost:${PORT}`);
 });

@@ -7,7 +7,9 @@ services:
       dockerfile: Dockerfile
     command: sh -c "yarn install && yarn start"
     ports:
-       - 3000:3000
+      - 3000:3000
     working_dir: /app
     volumes:
-       - ./:/app
+      - ./:/app
+    environment: 
+      - NPM_TOKEN="${NPM_TOKEN}"

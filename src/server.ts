@@ -5,6 +5,11 @@ import { logger } from './utils/logger';
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
+// server health check
+app.get('/healthcheck', (req: Request, res: Response): void => {
+  res.status(200).send();
+});
+
 // base url
 app.get('/', (req: Request, res: Response): void => {
   res.status(404).send();

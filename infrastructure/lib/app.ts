@@ -13,7 +13,7 @@ export class AppStack extends Stack {
           entryContainer: true,
           imageTag: 'latest',
           name: 'cassia-test',
-          repositoryArn: 'arn:aws:ecr:us-west-2:716177852038:repository/cassia-test',
+          repositoryArn: `arn:aws:ecr:us-west-2:${this.linktreeEnvironment.accountId}:repository/cassia-test`,
           port: 3000
         }
       ],
@@ -21,17 +21,14 @@ export class AppStack extends Stack {
     });
 
     this.fargateService.addApplicationLoadBalancer({
-      domain: 'linktr.ee',
-      domainPrefix: `${props.tags.Workload === 'qa' ? 'qa.' : 'development.'}cassia-test`,
+      domain: `${this.linktreeEnvironment.workload}.linktr.ee`,
+      domainPrefix: 'cassia-test',
       healthcheck: {
         interval: 10,
         healthyThresholdCount: 2,
-        path: '/cats/3'
+        path: '/healthcheck'
       },
-      public: false
+      public: true
     });
-
-    // TODO: fix listener error
-    // this.fargateService.alb.addListener('web', { port: 80 });
   }
 }

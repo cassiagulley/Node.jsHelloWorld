@@ -3,7 +3,7 @@ import { Repository } from '@linktr.ee/cdk-construct-library/aws/aws-ecr';
 import { AccountPrincipal } from '@linktr.ee/cdk-construct-library/aws/aws-iam';
 import { CfnOutput } from '@linktr.ee/cdk-construct-library/aws/core';
 
-export class CassiaTestStack extends Stack {
+export class EcrStack extends Stack {
   constructor(scope: Construct, id: string, props: StackProps) {
     super(scope, id, props);
 
